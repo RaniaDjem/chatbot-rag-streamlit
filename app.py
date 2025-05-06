@@ -3,23 +3,23 @@ import sys
 import tempfile
 from utils import process_pdf, get_chain
 
-# Ignore the torch module from being watched by Streamlit to avoid path issues
+# Ignore the torch module from being watched by Streamlit to avoid path issues (premier probleme solved)
 sys.modules["torch.classes"] = None
 
 st.set_page_config(page_title="Chatbot RAG PDF", page_icon="🧠")
 
 # 📝 Introduction
-st.title("📄 Chatbot Intelligent sur Document PDF")
+st.title( "Chatbot Intelligent sur Document PDF")
 st.markdown("""
-Bienvenue sur **Chatbot RAG PDF** ! 🚀
+Bienvenue sur **Chatbot PDF** ! 
 
-Téléversez simplement un fichier **PDF** (article, rapport, cours, etc.), et posez **toutes vos questions** dessus ✨  
+Téléversez simplement un fichier **PDF** (article, rapport, cours, etc.), et posez **toutes vos questions** dessus   
 Notre assistant intelligent lit le document et vous répond précisément, en s'appuyant sur le contenu du PDF.
 
-_C’est comme avoir un assistant personnel qui lit pour vous et vous résume tout_ 🤖📄
+_C’est comme avoir un assistant personnel qui lit pour vous et vous résume tout_ 
 """)
 
-# 📎 Fichier PDF
+# Fichier PDF
 uploaded_file = st.file_uploader("Choisissez un fichier PDF", type="pdf")
 
 if uploaded_file:
@@ -39,15 +39,13 @@ if uploaded_file:
             response = qa_chain.run(question)
             st.markdown(f"**Réponse :** {response}")
 
-# 🛠️ Stack technique & crédits
-st.markdown("""
----
-🛠️ **Stack technique** utilisée :
-- [Streamlit](https://streamlit.io/) pour l'interface web
-- [LangChain](https://www.langchain.com/) pour orchestrer le RAG (Retrieval-Augmented Generation)
-- [Mistral AI](https://mistral.ai/) pour le modèle de langage (LLM)
-- [Hugging Face Transformers](https://huggingface.co/) pour les embeddings
-- [FAISS](https://github.com/facebookresearch/faiss) pour la recherche sémantique
+#  Stack technique & crédits
 
-💡 Ce projet a été réalisé par **Rania Djema**.
-""")
+st.markdown("---")
+st.markdown(
+    "<div style='text-align: center;'>"
+    "Développé avec ❤️ par 👩‍💻 <strong>Rania Djema</strong><br>"
+    "<small>Stack : Langchain · Mistral AI · HuggingFace · FAISS · Streamlit</small>"
+    "</div>",
+    unsafe_allow_html=True
+)
